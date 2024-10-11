@@ -63,38 +63,33 @@ POSTGRES_PASSWORD=Например, db
  EMAIL_HOST_PASSWORD='Пароль для внешнего приложения для доступа к почте, подробнее тут https://help.mail.ru/mail/security/protection/external/'
  NOTIFICATION_EMAIL='Перечень почт куда будут отправлять письма, пишите через пробел, можно указать одну'
 
- CELERY_BROKER_URL='URL-адрес брокера сообщений, например,redis://localhost:6379'
- CELERY_RESULT_BACKEND='Место хранения результатов выполнения задач, например,redis://localhost:6379'
- CELERY_ACCEPT_CONTENT='Список форматов, которые Celery будет принимать в качестве контента для задач, например,application/json'
- CELERY_TASK_SERIALIZER='Сериализатор, который будет использоваться для сериализации задач перед их отправкой, например,json'
- CELERY_RESULT_SERIALIZER='Сериализатор, который будет использоваться для сериализации результатов задач, например,json'
  ```
 
-[//]: # (### 3. Сборка и запуск контейнеров)
+### 3. Сборка и запуск контейнеров
 
-[//]: # (```bash)
+```bash
 
-[//]: # (docker-compose up --build -d)
+docker-compose up --build -d
 
-[//]: # (```)
+```
 
-[//]: # ()
-[//]: # (### 4. Инициализация БД &#40;Создание ролей для пользователей&#41;)
 
-[//]: # (```bash)
+### 4. Инициализация БД (Создание ролей для пользователей)
 
-[//]: # (docker-compose exec web python manage.py initialize_db)
+```bash
 
-[//]: # (```)
+docker-compose exec web python manage.py initialize_db
 
-[//]: # ()
-[//]: # (### 5. Создание суперпользователя. Для роли Администратора указать id роли 1.)
+```
 
-[//]: # (```bash)
 
-[//]: # (docker-compose exec web python manage.py createsuperuser)
+### 5. Создание суперпользователя.
 
-[//]: # (```)
+```bash
+
+docker-compose exec web python manage.py createsuperuser
+
+```
 
 </details>
 
@@ -122,7 +117,6 @@ ___
   "last_name": "string",
   "middle_name": "string",
   "email": "user@example.com",
-  "role": 0,
   "password": "string"
 }
 ```
