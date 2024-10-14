@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from users.models import CustomUser, Role
+from users.models import CustomUser, Role, Group
 from djoser.serializers import UserCreateSerializer
 from django.contrib.auth import get_user_model
 
@@ -81,4 +81,36 @@ class MyUserSerializerForTask(serializers.ModelSerializer):
             'first_name',
             'last_name',
             'middle_name',
+        )
+
+
+class GroupSerializerForGet(serializers.ModelSerializer):
+    datetime_create = serializers.DateTimeField(format='%d.%m.%Y %H:%M:%S')
+    datetime_update = serializers.DateTimeField(format='%d.%m.%Y %H:%M:%S')
+    leader = MyUserSerializerForTask()
+    moderators = MyUserSerializerForTask(many=True)
+    specialists = MyUserSerializerForTask(many=True)
+
+    class Meta:
+        model = Group
+        fields = (
+            'id',
+            'name',
+            'leader',
+            'moderators',
+            'specialists',
+            'datetime_update',
+            'datetime_create'
+        )
+
+
+class GroupSerializerForPost(serializers.ModelSerializer):
+    class Meta:
+        model = Group
+        fields = (
+            'id',
+            'name',
+            'leader',
+            'moderators',
+            'specialists',
         )

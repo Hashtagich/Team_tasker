@@ -1,16 +1,18 @@
 from api.v1.serializers.user_serializer import (
     CustomCreateUserSerializer,
     MyUserSerializerForGet,
-    MyUserSerializer
+    MyUserSerializer,
+    GroupSerializerForGet,
+    GroupSerializerForPost
 )
 from drf_spectacular.utils import extend_schema, OpenApiResponse
 from rest_framework import status
 from rest_framework import viewsets
-from rest_framework.decorators import action
+from rest_framework.decorators import action, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
-from users.models import CustomUser
-from users.permissions import IsAdmin
+from users.models import CustomUser, Group
+from users.permissions import IsAdmin, IsNotBlocked, IsModerator
 
 
 @extend_schema(tags=['Пользователи'])
@@ -96,8 +98,52 @@ class UserViewSet(viewsets.ModelViewSet):
 
     @extend_schema(summary="API для получения конкретного пользователя по ID")
     def retrieve(self, request, *args, **kwargs):
-        return super().list(request, *args, **kwargs)
+        return super().retrieve(request, *args, **kwargs)
 
     @extend_schema(summary="API для редактирования конкретного пользователя по ID")
     def partial_update(self, request, *args, **kwargs):
+        return super().partial_update(request, *args, **kwargs)
+
+
+@extend_schema(tags=['Группы/Команды'])
+class GroupViewSet(viewsets.ModelViewSet):
+    queryset = Group.objects.all()
+    permission_classes = [IsAuthenticated, IsNotBlocked]
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return GroupSerializerForGet
+        else:
+            return GroupSerializerForPost
+
+    @extend_schema(summary="API для получения всех групп/команд")
+    def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
+
+    @extend_schema(summary="API для получения конкретной группы/команды по ID")
+    def retrieve(self, request, *args, **kwargs):
+        return super().retrieve(request, *args, **kwargs)
+
+    @extend_schema(summary="API для частичного редактирования конкретной группы/команды по ID")
+    def partial_update(self, request, *args, **kwargs):
+        self.permission_classes = [IsModerator]
+        self.check_permissions(request)
+        return super().partial_update(request, *args, **kwargs)
+
+    @extend_schema(summary="API для полного редактирования конкретной группы/команды по ID")
+    def update(self, request, *args, **kwargs):
+        self.permission_classes = [IsModerator]
+        self.check_permissions(request)
+        return super().update(request, *args, **kwargs)
+
+    @extend_schema(summary="API для создания группы/команды")
+    def create(self, request, *args, **kwargs):
+        self.permission_classes = [IsAdmin]
+        self.check_permissions(request)
+        return super().create(request, *args, **kwargs)
+
+    @extend_schema(summary="API для удаления конкретной группы/команды по ID")
+    def destroy(self, request, *args, **kwargs):
+        self.permission_classes = [IsAdmin]
+        self.check_permissions(request)
+        return super().destroy(request, *args, **kwargs)

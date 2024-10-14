@@ -18,16 +18,15 @@ class Task(models.Model):
     )
 
     description = models.TextField(
-        verbose_name='Описание',
-        null=True,
-        blank=True
+        verbose_name='Описание'
     )
 
     status = models.CharField(
         verbose_name='Статус',
         max_length=50,
         choices=CHOICE_STATUS,
-        default="new"
+        default="new",
+        blank=True
     )
 
     author = models.ForeignKey(

@@ -136,4 +136,355 @@ ___
 
 </details>
 
+***API для Администратора***
+<details>
+<summary><code>GET/api/v1/users/</code></summary>
 
+*Получение списка всех пользователей*
+```
+[
+  {
+    "id": 0,
+    "first_name": "string",
+    "last_name": "string",
+    "middle_name": "string",
+    "role": "",
+    "phone": "string",
+    "email": "user@example.com",
+    "is_staff": true,
+    "is_active": true,
+    "is_blocked": true
+  }
+]
+```
+</details>
+<details>
+<summary><code>GET/api/v1/users/{id}/</code></summary>
+
+*Получение информации о пользователе через его id*
+
+```
+{
+  "id": 0,
+  "first_name": "string",
+  "last_name": "string",
+  "middle_name": "string",
+  "role": "",
+  "phone": "string",
+  "email": "user@example.com",
+  "is_staff": true,
+  "is_active": true,
+  "is_blocked": true
+}
+```
+
+</details>
+<details>
+<summary><code>PATCH/api/v1/users/{id}/</code></summary>
+
+*Редактирования конкретного пользователя по ID*
+
+```
+{
+  "first_name": "string",
+  "last_name": "string",
+  "middle_name": "string",
+  "role": 0,
+  "is_staff": true,
+  "is_active": true,
+  "is_blocked": true
+}
+```
+
+</details>
+<details>
+<summary><code>PATCH/api/v1/users/{id}/unblock_user/</code></summary>
+
+*Разблокировка пользователя*
+
+</details>
+<details>
+<summary><code>PATCH/api/v1/users/{id}/block_user/</code></summary>
+
+*Блокировка пользователя*
+
+</details>
+<details>
+<summary><code>POST/api/v1/groups/</code></summary>
+
+*Создание группы/команды*
+
+```
+{
+  "name": "string",
+  "leader": 0,
+  "moderators": [
+    0
+  ],
+  "specialists": [
+    0
+  ]
+}
+```
+
+</details>
+<details>
+<summary><code>DELETE/api/v1/groups/{id}/</code></summary>
+
+*Удаление группы/команды*
+
+</details>
+
+***API для всех Пользователей***
+
+<details>
+<summary><code>GET/api/v1/groups/</code></summary>
+
+*Получение всех групп/команд*
+
+```
+[
+  {
+    "id": 0,
+    "name": "string",
+    "leader": {
+      "id": 0,
+      "first_name": "string",
+      "last_name": "string",
+      "middle_name": "string"
+    },
+    "moderators": [
+      {
+        "id": 0,
+        "first_name": "string",
+        "last_name": "string",
+        "middle_name": "string"
+      }
+    ],
+    "specialists": [
+      {
+        "id": 0,
+        "first_name": "string",
+        "last_name": "string",
+        "middle_name": "string"
+      }
+    ],
+    "datetime_update": "2024-10-14T21:33:27.079Z",
+    "datetime_create": "2024-10-14T21:33:27.079Z"
+  }
+]
+```
+
+</details>
+<details>
+<summary><code>GET/api/v1/groups/{id}/</code></summary>
+
+*Получение конкретной группы/команды по ID*
+
+```
+{
+  "id": 0,
+  "name": "string",
+  "leader": {
+    "id": 0,
+    "first_name": "string",
+    "last_name": "string",
+    "middle_name": "string"
+  },
+  "moderators": [
+    {
+      "id": 0,
+      "first_name": "string",
+      "last_name": "string",
+      "middle_name": "string"
+    }
+  ],
+  "specialists": [
+    {
+      "id": 0,
+      "first_name": "string",
+      "last_name": "string",
+      "middle_name": "string"
+    }
+  ],
+  "datetime_update": "2024-10-14T21:34:04.886Z",
+  "datetime_create": "2024-10-14T21:34:04.886Z"
+}
+```
+
+</details>
+<details>
+<summary><code>GET/api/v1/tasks/</code></summary>
+
+*Получение всех задач*
+
+```
+[
+  {
+    "name": "string",
+    "description": "string",
+    "status": "new",
+    "author": {
+      "id": 0,
+      "first_name": "string",
+      "last_name": "string",
+      "middle_name": "string"
+    },
+    "implementer": {
+      "id": 0,
+      "first_name": "string",
+      "last_name": "string",
+      "middle_name": "string"
+    },
+    "datetime_start": "2024-10-14T21:48:57.238Z",
+    "datetime_finish_plan": "2024-10-14T21:48:57.238Z",
+    "datetime_finish_fact": "2024-10-14T21:48:57.238Z",
+    "datetime_create": "2024-10-14T21:48:57.238Z"
+  }
+]
+```
+
+</details>
+<details>
+<summary><code>GET/api/v1/tasks/{id}/</code></summary>
+
+*Получение конкретной задачи по ID*
+
+```
+{
+  "name": "string",
+  "description": "string",
+  "status": "new",
+  "author": {
+    "id": 0,
+    "first_name": "string",
+    "last_name": "string",
+    "middle_name": "string"
+  },
+  "implementer": {
+    "id": 0,
+    "first_name": "string",
+    "last_name": "string",
+    "middle_name": "string"
+  },
+  "datetime_start": "2024-10-14T21:49:49.575Z",
+  "datetime_finish_plan": "2024-10-14T21:49:49.575Z",
+  "datetime_finish_fact": "2024-10-14T21:49:49.575Z",
+  "datetime_create": "2024-10-14T21:49:49.575Z"
+}
+```
+
+</details>
+<details>
+<summary><code>POST/api/v1/tasks/</code></summary>
+
+*Создание задачи. Автором становиться текущий пользователь. Название и описание являются обязательными к заполнению.*
+
+```
+{
+  "name": "string",
+  "description": "string",
+  "status": "new",
+  "author": {
+    "id": 0,
+    "first_name": "string",
+    "last_name": "string",
+    "middle_name": "string"
+  },
+  "implementer": {
+    "id": 0,
+    "first_name": "string",
+    "last_name": "string",
+    "middle_name": "string"
+  },
+  "datetime_start": "2024-10-14T21:49:49.575Z",
+  "datetime_finish_plan": "2024-10-14T21:49:49.575Z",
+  "datetime_finish_fact": "2024-10-14T21:49:49.575Z",
+  "datetime_create": "2024-10-14T21:49:49.575Z"
+}
+```
+
+</details>
+
+***API для Модератора группы/команды и Администратора***
+
+<details>
+<summary><code>PATCH/api/v1/groups/{id}/</code></summary>
+
+*Частичное редактирование конкретной группы/команды по ID*
+
+```
+{
+  "name": "string",
+  "leader": 0,
+  "moderators": [
+    0
+  ],
+  "specialists": [
+    0
+  ]
+}
+```
+
+</details>
+<details>
+<summary><code>PUT/api/v1/groups/{id}/</code></summary>
+
+*Полное редактирование конкретной группы/команды по ID*
+
+```
+{
+  "name": "string",
+  "leader": 0,
+  "moderators": [
+    0
+  ],
+  "specialists": [
+    0
+  ]
+}
+```
+
+</details>
+<details>
+<summary><code>PUT/api/v1/tasks/{id}/</code></summary>
+
+*Полное редактирование конкретной задачи по ID. Может выполнить также автор задачи.*
+
+```
+{
+  "name": "string",
+  "description": "string",
+  "status": "new",
+  "implementer": 0,
+  "datetime_start": "2024-10-14T21:54:32.618Z",
+  "datetime_finish_plan": "2024-10-14T21:54:32.618Z",
+  "datetime_finish_fact": "2024-10-14T21:54:32.618Z"
+}
+```
+
+</details>
+<details>
+<summary><code>PATCH/api/v1/tasks/{id}/</code></summary>
+
+*Частичное редактирование конкретной задачи по ID. Может выполнить также автор задачи.*
+
+```
+{
+  "name": "string",
+  "description": "string",
+  "status": "new",
+  "implementer": 0,
+  "datetime_start": "2024-10-14T21:54:32.618Z",
+  "datetime_finish_plan": "2024-10-14T21:54:32.618Z",
+  "datetime_finish_fact": "2024-10-14T21:54:32.618Z"
+}
+```
+
+</details>
+<details>
+<summary><code>DELETE/api/v1/tasks/{id}/</code></summary>
+
+*Удаление конкретной задачи по ID. Может выполнить также автор задачи.*
+
+</details>

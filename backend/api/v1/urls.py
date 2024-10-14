@@ -2,14 +2,15 @@ from django.urls import include, path
 from drf_spectacular.views import (SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView)
 from rest_framework.routers import DefaultRouter
 
-from .views.user_view import UserRegistrationViewSet, UserViewSet
-from .views.task_view import SlotViewSet
+from .views.user_view import UserRegistrationViewSet, UserViewSet, GroupViewSet
+from .views.task_view import TaskViewSet
 
 v1_router = DefaultRouter()
 
 v1_router.register('users', UserViewSet, basename='users')
 v1_router.register(r'register', UserRegistrationViewSet, basename='user-register')
-v1_router.register(r'tasks', SlotViewSet, basename='tasks')
+v1_router.register(r'tasks', TaskViewSet, basename='tasks')
+v1_router.register(r'groups', GroupViewSet, basename='groups')
 
 urlpatterns = [
     path("", include(v1_router.urls)),
