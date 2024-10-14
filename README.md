@@ -488,3 +488,44 @@ ___
 *Удаление конкретной задачи по ID. Может выполнить также автор задачи.*
 
 </details>
+
+***API Статистика***
+
+<details>
+<summary><code>GET/api/v1/tasks_statistics/</code></summary>
+
+*Получение статистики по статусам задач исполнителей, где пользователь является руководителем.*
+
+```
+[
+  {
+    "total_tasks": 0,
+    "status_counts": {
+      "done": 0,
+      "in_work": 0,
+      "new": 0
+    }
+  }
+]
+```
+
+</details>
+<details>
+<summary><code>GET/api/v1/tasks_statistics/all/</code></summary>
+
+*Получение статистики по статусам всех задач*
+
+```
+[
+  {
+    "total_tasks": 0,
+    "status_counts": {
+      "done": 0,
+      "in_work": 0,
+      "new": 0
+    }
+  }
+]
+```
+
+</details>
