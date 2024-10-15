@@ -17,11 +17,27 @@ class Role(models.Model):
         return self.title
 
 
+class Profession(models.Model):
+    """Модель профессии пользователя."""
+    title = models.CharField(
+        'Название',
+        max_length=64,
+    )
+
+    class Meta:
+        verbose_name = 'Профессия'
+        verbose_name_plural = 'Профессии'
+
+    def __str__(self):
+        return self.title
+
+
 class Group(models.Model):
     """Модель роли команды."""
     name = models.CharField(
         'Название',
         max_length=50,
+        unique=True
     )
 
     leader = models.ForeignKey(
@@ -124,6 +140,16 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         null=True,
         blank=True,
     )
+
+    Profession = models.ForeignKey(
+        Profession,
+        on_delete=models.CASCADE,
+        related_name='profession',
+        verbose_name='Профессия',
+        blank=True,
+        null=True
+    )
+
     phone = models.CharField(
         verbose_name='Номер телефона',
         max_length=15,
