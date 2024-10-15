@@ -41,6 +41,7 @@ class RoleSerializer(serializers.ModelSerializer):
 
 class MyUserSerializerForGet(serializers.ModelSerializer):
     role = serializers.CharField(source='role.title', allow_blank=True, default='')
+    group = serializers.CharField(source='group.name', allow_blank=True, default='')
 
     class Meta:
         model = CustomUser
@@ -54,7 +55,8 @@ class MyUserSerializerForGet(serializers.ModelSerializer):
             'email',
             'is_staff',
             'is_active',
-            'is_blocked'
+            'is_blocked',
+            'group'
         )
 
 

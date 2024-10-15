@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CustomUser, Role, Group
+from .models import CustomUser, Role, Group, Profession
 
 
 class GroupInline(admin.TabularInline):
@@ -21,6 +21,13 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Role)
 class RoleAdmin(admin.ModelAdmin):
+    list_display = ('title', 'id')
+    search_fields = ('title',)
+    list_filter = ('title',)
+
+
+@admin.register(Profession)
+class ProfessionAdmin(admin.ModelAdmin):
     list_display = ('title', 'id')
     search_fields = ('title',)
     list_filter = ('title',)
