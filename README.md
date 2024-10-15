@@ -492,21 +492,19 @@ ___
 ***API Статистика***
 
 <details>
-<summary><code>GET/api/v1/tasks_statistics/</code></summary>
+<summary><code>GET/api/v1/tasks_statistics/leader/</code></summary>
 
 *Получение статистики по статусам задач исполнителей, где пользователь является руководителем.*
 
 ```
-[
-  {
-    "total_tasks": 0,
-    "status_counts": {
-      "done": 0,
-      "in_work": 0,
-      "new": 0
-    }
+{
+  "total_tasks": 0,
+  "status_counts": {
+    "done": 0,
+    "in_work": 0,
+    "new": 0
   }
-]
+}
 ```
 
 </details>
@@ -516,16 +514,31 @@ ___
 *Получение статистики по статусам всех задач*
 
 ```
-[
-  {
-    "total_tasks": 0,
-    "status_counts": {
-      "done": 0,
-      "in_work": 0,
-      "new": 0
-    }
+{
+  "total_tasks": 0,
+  "status_counts": {
+    "done": 0,
+    "in_work": 0,
+    "new": 0
   }
-]
+}
+```
+
+</details>
+<details>
+<summary><code>GET/api/v1/tasks_statistics/implementer/</code></summary>
+
+*Получение статистики по текущему пользователю, собственная статистика.*
+
+```
+{
+  "total_tasks": 0,
+  "status_counts": {
+    "done": 0,
+    "in_work": 0,
+    "new": 0
+  }
+}
 ```
 
 </details>
